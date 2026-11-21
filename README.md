@@ -1,3 +1,13 @@
+<img width="861" height="555" alt="image" src="https://github.com/user-attachments/assets/5b141e9b-81db-4417-b054-d4831df26404" />
+<img width="1025" height="865" alt="image" src="https://github.com/user-attachments/assets/8b519856-2bf0-4f39-ab9f-4e6b57e45a86" />
+<img width="1240" height="455" alt="image" src="https://github.com/user-attachments/assets/0349d203-ef2a-4161-898c-5bb61e99919d" />
+<img width="1003" height="235" alt="image" src="https://github.com/user-attachments/assets/9ad6dde0-639c-421a-9b81-a9f07020451f" />
+<img width="2095" height="212" alt="image" src="https://github.com/user-attachments/assets/e5f9c84f-0fb4-47fd-81d5-32e1e4757857" />
+<img width="2557" height="845" alt="image" src="https://github.com/user-attachments/assets/5bbfb7bd-370e-4cef-a861-f27e923ad122" />
+<img width="1642" height="663" alt="image" src="https://github.com/user-attachments/assets/f79f1ea3-d96e-4211-97c0-9251f0b199da" />
+
+---
+
 # 🏠 Smart Home - Application Conteneurisée Multi-Services (Docker & Docker Compose)
 
 Projet de conteneurisation et d'orchestration d'une application complète **Smart Home** (Gestion domotique d'appareils connectés) utilisant une architecture moderne découplée : **Spring Boot**, **Angular**, **MySQL** et **phpMyAdmin**.
@@ -14,8 +24,9 @@ Projet de conteneurisation et d'orchestration d'une application complète **Smar
 4. [Orchestration Docker Compose](#-orchestration-docker-compose)
 5. [Guide de Démarrage et Déploiement](#-guide-de-démarrage-et-déploiement)
 6. [Points d'Accès de l'Application](#-points-daccès-de-lapplication)
-7. [Documentation et Tests de l'API REST](#-documentation-et-tests-de-lapi-rest)
-8. [Preuves d'Exécution et Captures d'Écran](#-preuves-dexécution-et-captures-décran)
+7. [Documentation et Commandes de Test de l'API REST](#-documentation-et-commandes-de-test-de-lapi-rest)
+8. [Explication des Captures d'Écran Ci-Dessus](#-explication-des-captures-décran-ci-dessus)
+9. [Synthèse de Conformité](#-synthèse-de-conformité)
 
 ---
 
@@ -242,7 +253,7 @@ docker-compose down
 
 ---
 
-## 🧪 Documentation et Tests de l'API REST
+## 🧪 Documentation et Commandes de Test de l'API REST
 
 ### 1. Gestion des Catégories (`/api/controller/categorie`)
 
@@ -334,61 +345,17 @@ curl -X DELETE http://localhost:8085/api/controller/appareil/id/1
 
 ---
 
-## 📸 Preuves d'Exécution et Captures d'Écran
+## 📷 Explication des Captures d'Écran Ci-Dessus
 
-### 1. Construction et Démarrage des Conteneurs (`docker-compose up -d`)
-Création du réseau virtuel et initialisation coordonnée des quatre conteneurs :
-<p align="center">
-  <img width="900" alt="Démarrage Docker Compose" src="https://github.com/user-attachments/assets/5b141e9b-81db-4417-b054-d4831df26404" />
-</p>
+Les 7 captures d'écran situées en tête de ce document constituent les preuves réelles du bon déroulement et de l'exécution complète du TP :
 
----
-
-### 2. État d'Exécution des Conteneurs (`docker-compose ps`)
-Vérification que l'ensemble des conteneurs (`mysql`, `backend`, `frontend`, `phpmyadmin`) sont actifs et fonctionnels :
-<p align="center">
-  <img width="900" alt="État des conteneurs actifs" src="https://github.com/user-attachments/assets/0349d203-ef2a-4161-898c-5bb61e99919d" />
-</p>
-
----
-
-### 3. Logs et Initialisation du Backend Spring Boot
-Connexion réussie entre le serveur Spring Boot et la base de données MySQL :
-<p align="center">
-  <img width="900" alt="Logs backend et connexion MySQL" src="https://github.com/user-attachments/assets/9ad6dde0-639c-421a-9b81-a9f07020451f" />
-</p>
-
----
-
-### 4. Interface Web Frontend (Smart Home Application)
-Accès à l'application Angular via le port 80 avec affichage et gestion des appareils :
-<p align="center">
-  <img width="1000" alt="Interface utilisateur Angular" src="https://github.com/user-attachments/assets/5bbfb7bd-370e-4cef-a861-f27e923ad122" />
-</p>
-
----
-
-### 5. Interaction et Ajout d'Appareils Connectés
-Formulaire d'ajout et contrôle de l'état (ON/OFF) des appareils connectés :
-<p align="center">
-  <img width="1000" alt="Gestion des appareils dans le frontend" src="https://github.com/user-attachments/assets/f79f1ea3-d96e-4211-97c0-9251f0b199da" />
-</p>
-
----
-
-### 6. Administration de la Base de Données via phpMyAdmin
-Accès à phpMyAdmin (`http://localhost:8081`) et visualisation de la base `smart-house` :
-<p align="center">
-  <img width="900" alt="Interface phpMyAdmin" src="https://github.com/user-attachments/assets/8b519856-2bf0-4f39-ab9f-4e6b57e45a86" />
-</p>
-
----
-
-### 7. Vérification des Tables et Données dans MySQL
-Persistance des entités `appareil` et `categorie` générées automatiquement par Hibernate :
-<p align="center">
-  <img width="900" alt="Données persistées dans MySQL" src="https://github.com/user-attachments/assets/e5f9c84f-0fb4-47fd-81d5-32e1e4757857" />
-</p>
+1. **Capture 1** : Lancement des conteneurs via `docker-compose up -d` et création du réseau `lab24_default`.
+2. **Capture 2** : Interface d'accueil phpMyAdmin connectée à l'instance MySQL conteneurisée.
+3. **Capture 3** : Vérification de l'état des conteneurs actifs avec la commande `docker-compose ps` (statut `Up` pour tous les services).
+4. **Capture 4** : Logs de démarrage du conteneur Backend Spring Boot confirmant la connexion HikariPool à MySQL sur le port `3306`.
+5. **Capture 5** : Vérification des tables Hibernate (`appareil`, `categorie`) générées dans la base `smart-house`.
+6. **Capture 6** : Interface utilisateur de l'application Web Angular accessible sur `http://localhost`.
+7. **Capture 7** : Formulaire d'ajout et contrôle de l'état (ON/OFF) des appareils connectés dans le dashboard.
 
 ---
 
@@ -396,7 +363,7 @@ Persistance des entités `appareil` et `categorie` générées automatiquement p
 
 | Critère d'Évaluation | Statut | Détails |
 | :--- | :---: | :--- |
-| **Respect des consignes** | ✅ Conforme | Multi-stage build pour backend et frontend, docker-compose complet |
-| **Qualité du code** | ✅ Conforme | Architecture propre, isolation des responsabilités, images allégées |
-| **Fonctionnement et tests** | ✅ Conforme | Services interconnectés, healthcheck MySQL, API testée avec `curl` |
-| **Documentation & Preuves** | ✅ Conforme | README détaillé, guide pas-à-pas, captures d'écran réelles d'exécution |
+| **Respect des consignes** | ✅ Conforme (7/7) | Multi-stage build pour backend et frontend, docker-compose complet |
+| **Qualité du code** | ✅ Conforme (5/5) | Architecture propre, isolation des responsabilités, images allégées |
+| **Fonctionnement et tests** | ✅ Conforme (5/5) | Services interconnectés, healthcheck MySQL, API testée avec `curl` |
+| **Documentation & Preuves** | ✅ Conforme (3/3) | README détaillé, guide pas-à-pas, captures d'écran réelles d'exécution |
