@@ -1,0 +1,9 @@
+/app/src/main/java/com/example/appareil/cotroller/AppareilController.java
+/app/src/main/java/com/example/appareil/cotroller/CategorieController.java
+/app/src/main/java/com/example/appareil/repository/CategorieRepository.java
+/app/src/main/java/com/example/appareil/service/CategorieService.java
+/app/src/main/java/com/example/appareil/entity/Categorie.java
+/app/src/main/java/com/example/appareil/service/AppareilService.java
+/app/src/main/java/com/example/appareil/repository/AppareilRepository.java
+/app/src/main/java/com/example/appareil/entity/Appareil.java
+/app/src/main/java/com/example/appareil/AppareilApplication.java
