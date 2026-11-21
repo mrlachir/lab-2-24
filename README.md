@@ -8,29 +8,11 @@
 
 ---
 
-# 🏠 Smart Home - Application Conteneurisée Multi-Services (Docker & Docker Compose)
+# Smart Home - Application Conteneurisée Multi-Services (Docker & Docker Compose)
 
 Projet de conteneurisation et d'orchestration d'une application complète **Smart Home** (Gestion domotique d'appareils connectés) utilisant une architecture moderne découplée : **Spring Boot**, **Angular**, **MySQL** et **phpMyAdmin**.
-
 ---
-
-## 📋 Table des Matières
-
-1. [Architecture Globale](#-architecture-globale)
-2. [Structure du Projet](#-structure-du-projet)
-3. [Détail des Dockerfiles (Multi-stage Build)](#-détail-des-dockerfiles-multi-stage-build)
-   - [Backend (Spring Boot)](#1-dockerfile-backend-smart_home_backdockerfile)
-   - [Frontend (Angular)](#2-dockerfile-frontend-smarthome-frontdockerfile)
-4. [Orchestration Docker Compose](#-orchestration-docker-compose)
-5. [Guide de Démarrage et Déploiement](#-guide-de-démarrage-et-déploiement)
-6. [Points d'Accès de l'Application](#-points-daccès-de-lapplication)
-7. [Documentation et Commandes de Test de l'API REST](#-documentation-et-commandes-de-test-de-lapi-rest)
-8. [Explication des Captures d'Écran Ci-Dessus](#-explication-des-captures-décran-ci-dessus)
-9. [Synthèse de Conformité](#-synthèse-de-conformité)
-
----
-
-## 🏛 Architecture Globale
+## Architecture Globale
 
 L'application est découpée en 4 services conteneurisés interconnectés via un réseau virtuel Docker bridge :
 
@@ -63,39 +45,10 @@ L'application est découpée en 4 services conteneurisés interconnectés via un
 - **Base de données** : Serveur MySQL 8.x avec persistance des données (port 3306).
 - **Administration BDD** : Interface phpMyAdmin pour l'inspection et la gestion des tables (port 8081).
 
----
-
-## 📁 Structure du Projet
-
-```
-.
-├── Smart_Home_back/                  # Application Backend Spring Boot
-│   ├── Dockerfile                    # Dockerfile multi-stage Maven -> JRE 17
-│   ├── pom.xml                       # Dépendances Maven (Spring Boot 3.1.5, JPA, MySQL)
-│   └── src/
-│       ├── main/
-│       │   ├── java/com/example/appareil/
-│       │   │   ├── cotroller/        # AppareilController, CategorieController
-│       │   │   ├── entity/           # Appareil.java, Categorie.java
-│       │   │   ├── repository/       # AppareilRepository, CategorieRepository
-│       │   │   ├── service/          # AppareilService, CategorieService
-│       │   │   └── AppareilApplication.java
-│       │   └── resources/
-│       │       └── application.properties # Configuration Datasource dynamique
-│       └── test/                     # Tests unitaires et d'intégration
-├── smartHome-front/                  # Application Frontend Angular
-│   ├── Dockerfile                    # Dockerfile multi-stage Node 14 -> Nginx Alpine
-│   ├── package.json                  # Dépendances Angular 14, PrimeNG, TailwindCSS
-│   ├── angular.json                  # Configuration du build Angular
-│   └── src/                          # Composants, services et assets Angular
-├── docker-compose.yml                # Fichier d'orchestration multi-services
-├── .env                              # Variables d'environnement pour la configuration
-└── README.md                         # Documentation complète du projet
-```
 
 ---
 
-## 🐳 Détail des Dockerfiles (Multi-stage Build)
+## Détail des Dockerfiles (Multi-stage Build)
 
 L'utilisation du patron **Multi-stage Build** permet d'isoler la phase de compilation (lourde) de la phase d'exécution (légère), garantissant des images Docker minimalistes, sécurisées et performantes.
 
@@ -144,7 +97,7 @@ COPY --from=builder /app/dist/smart-home /usr/share/nginx/html
 
 ---
 
-## ⚙️ Orchestration Docker Compose
+## Orchestration Docker Compose
 
 Le fichier `docker-compose.yml` orchestre le cycle de vie de tous les conteneurs :
 
@@ -198,7 +151,7 @@ services:
 
 ---
 
-## 🚀 Guide de Démarrage et Déploiement
+## Guide de Démarrage et Déploiement
 
 ### Prérequis
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et en cours d'exécution.
@@ -242,7 +195,7 @@ docker-compose down
 
 ---
 
-## 🌐 Points d'Accès de l'Application
+## Points d'Accès de l'Application
 
 | Service | Rôle | URL d'Accès | Identifiants |
 | :--- | :--- | :--- | :--- |
@@ -253,7 +206,7 @@ docker-compose down
 
 ---
 
-## 🧪 Documentation et Commandes de Test de l'API REST
+## Documentation et Commandes de Test de l'API REST
 
 ### 1. Gestion des Catégories (`/api/controller/categorie`)
 
@@ -344,26 +297,3 @@ curl -X DELETE http://localhost:8085/api/controller/appareil/id/1
 ```
 
 ---
-
-## 📷 Explication des Captures d'Écran Ci-Dessus
-
-Les 7 captures d'écran situées en tête de ce document constituent les preuves réelles du bon déroulement et de l'exécution complète du TP :
-
-1. **Capture 1** : Lancement des conteneurs via `docker-compose up -d` et création du réseau `lab24_default`.
-2. **Capture 2** : Interface d'accueil phpMyAdmin connectée à l'instance MySQL conteneurisée.
-3. **Capture 3** : Vérification de l'état des conteneurs actifs avec la commande `docker-compose ps` (statut `Up` pour tous les services).
-4. **Capture 4** : Logs de démarrage du conteneur Backend Spring Boot confirmant la connexion HikariPool à MySQL sur le port `3306`.
-5. **Capture 5** : Vérification des tables Hibernate (`appareil`, `categorie`) générées dans la base `smart-house`.
-6. **Capture 6** : Interface utilisateur de l'application Web Angular accessible sur `http://localhost`.
-7. **Capture 7** : Formulaire d'ajout et contrôle de l'état (ON/OFF) des appareils connectés dans le dashboard.
-
----
-
-## 🏆 Synthèse de Conformité
-
-| Critère d'Évaluation | Statut | Détails |
-| :--- | :---: | :--- |
-| **Respect des consignes** | ✅ Conforme (7/7) | Multi-stage build pour backend et frontend, docker-compose complet |
-| **Qualité du code** | ✅ Conforme (5/5) | Architecture propre, isolation des responsabilités, images allégées |
-| **Fonctionnement et tests** | ✅ Conforme (5/5) | Services interconnectés, healthcheck MySQL, API testée avec `curl` |
-| **Documentation & Preuves** | ✅ Conforme (3/3) | README détaillé, guide pas-à-pas, captures d'écran réelles d'exécution |
